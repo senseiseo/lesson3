@@ -5,9 +5,9 @@ require 'sinatra/reloader'
 
 # Method connect with database
 def get_db
-  @db = SQLite3::Database.new 'base.db'
-  @db.results_as_hash = true
-  return @db
+  db = SQLite3::Database.new 'base.db'
+  db.results_as_hash = true
+  return db
 end
 
 # Configure application
@@ -22,7 +22,12 @@ configure do
       "option" TEXT,
       "comment" TEXT
     )'
-  db.close
+    db.execute 'CREATE TABLE IF NOT EXISTS "Barbers"
+    (
+      "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+      "name" TEXT
+    )'
+  
 end
 
 # Method save form data to database
