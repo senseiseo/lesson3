@@ -13,10 +13,16 @@
 
   <p>
     <select name="option">
-      <option value="" selected>Выбрать опцию...</option>
+      <%# <option value="" selected>Выбрать опцию...</option>
       <option value="Опция 1">Опция 1</option>
       <option value="Опция 2">Опция 2</option>
-      <option value="Опция 3">Опция 3</option>
+      <option value="Опция 3">Опция 3</option> %>
+    
+    <% @barbers.each do |item|%>
+    <option <%= @option == item['name'] ? 'selected' : '' %>><%=item['name']%></option>
+    
+    
+    <%end%>
     </select>
   </p>
 
